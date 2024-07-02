@@ -1,0 +1,13 @@
+@startuml
+actor "用户" as User
+participant "前端界面" as Frontend
+participant "后台" as Backend
+participant "数据库" as Database
+
+User -> Frontend : 输入表单信息
+Frontend -> Backend : 验证参数后提交登录/注册请求
+Backend -> Database : 验证用户信息
+Database --> Backend : 返回验证结果
+Backend --> Frontend : 返回登录/注册成功或失败信息
+Frontend --> User : 显示结果
+@enduml

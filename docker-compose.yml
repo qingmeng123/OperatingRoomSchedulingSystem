@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root # root密码(修改要同时修改.deploy/sql/init.sql中的密码)
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home/project/data/system/mysql/data:/var/lib/mysql
+      - ./deploy/sql/init:/docker-entrypoint-initdb.d/
+    networks:
+      - system-net
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - /home/project/data/system/redis/data:/data
+    networks:
+      - system-net
+
+  scheduling-system:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - /home/project/data/system/logs/:/app/log
+
+    depends_on:
+      - mysql
+    networks:
+      - system-net
+
+networks:
+  system-net:
+    driver: bridge

@@ -1,0 +1,58 @@
+@startuml
+
+entity "用户" as user {
+  + id : int [PK]                   // 用户ID，主键
+  --
+  username : varchar(20)           // 用户名
+  password : varchar(80)           // 密码
+  gender : tinyint(1)              // 性别
+  name : varchar(20)               // 姓名
+  phone : varchar(20)              // 电话号码
+  work_year : int                   // 工作年限
+  group_id : int                    // 用户组
+  post_id : int                     // 职位ID
+}
+
+entity "职位" as post {
+  + id : int [PK]                   // 职位ID，主键
+  --
+  name : varchar(20)               // 职位名称
+  number : int                      // 数量
+}
+
+entity "手术室" as operating_room {
+  + id : int [PK]                   // 手术室ID，主键
+  --
+  name : varchar(20)               // 手术室名称
+  category_id : int                    // 科室ID
+}
+
+entity "科室" as category {
+  + id : int [PK]                   // 类别ID，主键
+  --
+  name : varchar(20)               // 类别名称
+}
+
+entity "手术排程" as surgery {
+  + id : int [PK]                   // 手术ID，主键
+  --
+  name : varchar(20)               // 手术名称
+  category_id : int                 // 科室ID
+  room_id : int                     // 手术室ID
+  start_time : datetime             // 开始时间
+  end_time : datetime               // 结束时间
+  state : int                       // 状态
+}
+
+entity "医护士手术关系" as surgery_user {
+  + surgery_id : bigint [PK]        // 手术ID，主键
+  + user_id : bigint [PK]           // 用户ID，主键
+}
+
+user --|{ post
+surgery ||--o{ category
+surgery ||--o{ operating_room
+surgery }o--|| surgery_user
+user }o--|| surgery_user
+
+@enduml

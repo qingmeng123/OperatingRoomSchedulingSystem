@@ -1,0 +1,13 @@
+@startuml
+actor "管理员" as User
+participant "手术排程界面" as Frontend
+participant "后台" as Backend
+participant "数据库" as Database
+
+User -> Frontend : 点击功能，输入请求信息
+Frontend -> Backend : 验证参数后提交请求
+Backend -> Database : 获取/更新数据
+Database --> Backend : 返回结果
+Backend --> Frontend : 返回请求结果信息
+Frontend --> User : 显示结果
+@enduml

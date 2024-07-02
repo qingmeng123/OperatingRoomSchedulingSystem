@@ -1,0 +1,28 @@
+@startuml
+
+left to right direction
+
+actor "用户" as Admin
+
+rectangle "功能" {
+    usecase (登录) as UC1
+
+    usecase (手术排程) as UC3
+    usecase (手术室管理) as UC4
+    usecase (职位管理) as UC5
+    usecase (人员管理) as UC6
+    usecase (排程查询) as UC7
+    usecase (个人信息) as UC8
+
+
+    Admin --> UC1 : 注册/登录
+    UC1 --> UC3:管理员权限
+    UC1 --> UC4:管理员权限
+    UC1 --> UC5:管理员权限
+    UC1 --> UC6:管理员权限
+    UC1 --> UC7
+    UC1 --> UC8
+
+}
+
+@enduml

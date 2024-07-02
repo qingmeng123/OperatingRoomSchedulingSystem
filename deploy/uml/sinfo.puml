@@ -1,0 +1,14 @@
+@startuml
+
+
+
+
+
+entity "医护人员" as post {
+  + key:operating_user_schedule:(user_id)
+  --
+  value:time_slot
+}
+
+
+@enduml
