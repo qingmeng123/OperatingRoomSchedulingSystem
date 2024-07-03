@@ -26,19 +26,22 @@
     - gorm
     - go-redis
     - jwt-go
-    - scrypt
     - go-ini
 - JavaScript
     - vue
-    - vue cli
-    - vue router
     - element-plus
     - axios
     - gantt-schedule-timeline-calendar
-- MySQL version:8.0.21
-
+- MySQL
+- Redis
 ## 项目预览
 
+![image](web/public/info.png) 
+![image](web/public/user.png) 
+![image](web/public/staff.png) 
+![image](web/public/room.png) 
+![image](web/public/sheduling.png) 
+![image](web/public/query.png) 
 
 
 
